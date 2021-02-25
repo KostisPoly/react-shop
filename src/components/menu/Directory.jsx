@@ -11,27 +11,27 @@ export default class Directory extends Component {
             sections: [
                 {
                     title: 'hats',
-                    imageUrl: '/assets/pexels-mateusz-4350765.jpg',
+                    imageUrl: '/assets/hats/pexels-pixabay-35185.jpg',
                     id: 1
                 },
                 {
-                    title: 'jackets',
-                    imageUrl: '/assets/pexels-hassan-ouajbir-887898.jpg',
+                    title: 'shoes',
+                    imageUrl: '/assets/shoes/nikes-red.png',
                     id: 2
                 },
                 {
                     title: 'womens fashion',
-                    imageUrl: '/assets/pexels-juan-mendez-1536619.jpg',
+                    imageUrl: '/assets/womens/floral-skirt.png',
                     id: 3
                 },
                 {
                     title: 'mens fashion',
-                    imageUrl: '/assets/pexels-the-lazy-artist-gallery-1342609.jpg',
+                    imageUrl: '/assets/mens/pexels-the-lazy-artist-gallery-1342609.jpg',
                     id: 4
                 },
                 {
                     title: 'accessories',
-                    imageUrl: '/assets/pexels-lumn-322207.jpg',
+                    imageUrl: '/assets/accessories/pexels-lumn-322207.jpg',
                     id: 5
                 }
             ]
