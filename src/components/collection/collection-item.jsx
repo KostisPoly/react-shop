@@ -1,5 +1,4 @@
 import React from 'react'
-import Collection from './collection'
 import './collection-item.scss'
 
 const CollectionItem = ({ id, name, price, imageUrl }) => {

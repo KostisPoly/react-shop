@@ -1,3 +1,8 @@
 body {
     font-family: 'Bungee', cursive;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
