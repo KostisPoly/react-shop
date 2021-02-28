@@ -3,7 +3,7 @@ import './login.scss'
 import FormInput from './form-input'
 import ActionButton from '../action-button/action-button'
 
-import { signInWithGoogle } from '../../firebase/firebase'
+import { auth, signInWithGoogle } from '../../firebase/firebase'
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -14,19 +14,26 @@ class Login extends Component {
         }
     }
 
-    handleSubmit = e => {
+    handleSubmit = async e => {
         e.preventDefault();
 
-        this.setState({
-            email: '',
-            password: ''
-        });
+        const { email, password } = this.state;
+
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            this.setState({
+                email: '',
+                password: ''
+            })
+        } catch(error) {
+            console.log(error);
+        }
     }
     
     handleInputChange = e => {
-        e.preventDefault();
+        const { value, name } = e.target;
 
-        console.log(e.target.value);
+        this.setState({ [name]:value });
     }
 
     render() {

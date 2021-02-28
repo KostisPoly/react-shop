@@ -53,7 +53,7 @@ class Register extends Component {
     }
 
     render() {
-        const { email, password,displayName, passwordConfirm } = this.state;
+        const { email, password, displayName, passwordConfirm } = this.state;
         return (
             <div className="register">
                 <h2>I dont have an account!</h2>

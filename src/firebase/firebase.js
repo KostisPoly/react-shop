@@ -32,7 +32,7 @@ export const createUserProfile = async (user, otherData) => {
                 displayName,
                 email,
                 createdAt,
-                otherData
+                ...otherData
             })
         } catch(error) {
             console.log('Error in create user -- '+error.message);

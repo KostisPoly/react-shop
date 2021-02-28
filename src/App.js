@@ -36,8 +36,9 @@ class App extends React.Component {
               ...snapShot.data()
             }
           });
+
         });
-      
+        
       } else {//Else user log out set back to null ( user auth state changed to null)
         this.setState({ currentUser: user});
       }
