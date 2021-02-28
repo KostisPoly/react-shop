@@ -6,9 +6,7 @@ import Shoppage from './components/pages/Shop'
 import Header from './components/header/header'
 import Signin from './components/pages/signin'
 
-import { auth, createUserFrofile } from './firebase/firebase'
-import { AiTwotoneRightSquare } from 'react-icons/ai';
-
+import { auth, createUserProfile } from './firebase/firebase'
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +25,7 @@ class App extends React.Component {
   componentDidMount(){//Will alwyays fire async db func call! Either null or user auth object!
     this.unSubscribeFromAuth = auth.onAuthStateChanged( async user => {
       if(user) {
-        const userRef = await createUserFrofile(user);
+        const userRef = await createUserProfile(user);
       
         //Use ref obj user to bind snapshot and set comp state of snapshot.data() created
         userRef.onSnapshot(snapShot => {

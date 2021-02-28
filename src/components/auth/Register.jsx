@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './register.scss'
 import FormInput from './form-input'
 import ActionButton from '../action-button/action-button'
-import { auth, createUserFrofile, createUserProfile } from '../../firebase/firebase'
+import { auth, createUserProfile } from '../../firebase/firebase'
 
 class Register extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class Register extends Component {
         try {
             const { user } = await auth.createUserWithEmailAndPassword(email, password);
 
-            await createUserFrofile(user, { displayName });
+            await createUserProfile(user, { displayName });
 
             //ON SUCCESS EMPTY FORM BY EMPTYING STATE?
             this.setState({
@@ -86,7 +86,7 @@ class Register extends Component {
                     <FormInput
                         type="password"
                         name="passwordConfirm"
-                        value={password}
+                        value={passwordConfirm}
                         handleChange={this.handleInputChange}
                         placeholder="Confirm Password"
                         required     

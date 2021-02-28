@@ -15,7 +15,7 @@ const config = {
 firebase.initializeApp(config);
 
 //Check auth user then if no db snapshot create it and either way return the user ref in db!
-export const createUserFrofile = async (user, otherData) => {
+export const createUserProfile = async (user, otherData) => {
     if(!user) {
         return;
     }
