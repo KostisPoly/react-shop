@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import './register.scss'
+import FormInput from './form-input'
+import ActionButton from '../action-button/action-button'
+import { auth, createUserFrofile, createUserProfile } from '../../firebase/firebase'
 
 class Register extends Component {
     constructor(props) {
@@ -7,15 +10,93 @@ class Register extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            displayName: '',
+            passwordConfirm: ''
         }
     }
     
+    handleSubmit = async e => {//if pass validate try createprofile
+        e.preventDefault();
+
+        const { email, password, displayName, passwordConfirm } = this.state;
+
+        if(password !== passwordConfirm) {
+            alert('Passwords dont match!');
+            return;
+        }
+
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword(email, password);
+
+            await createUserFrofile(user, { displayName });
+
+            //ON SUCCESS EMPTY FORM BY EMPTYING STATE?
+            this.setState({
+                email: '',
+                password: '',
+                displayName: '',
+                passwordConfirm: ''
+            });
+        } catch(error) {
+            console.log('Cannot create user or profile -- '+error);
+        }
+
+    }
+
+    handleInputChange = e => {
+        const { name, value } = e.target;
+
+        this.setState({
+            [name]: value
+        });
+    }
+
     render() {
+        const { email, password,displayName, passwordConfirm } = this.state;
         return (
             <div className="register">
-                <h2></h2>
-                <span></span>
+                <h2>I dont have an account!</h2>
+                <span>Register with email and password</span>
+                <form onSubmit={this.handleSubmit}>
+                    <FormInput
+                        type="email"
+                        name="email"
+                        value={email}
+                        handleChange={this.handleInputChange}
+                        placeholder="Enter Email"
+                        required     
+                    />
+                    <FormInput
+                        type="text"
+                        name="displayName"
+                        value={displayName}
+                        handleChange={this.handleInputChange}
+                        placeholder="Enter Username"
+                        required     
+                    />
+                    <FormInput
+                        type="password"
+                        name="password"
+                        value={password}
+                        handleChange={this.handleInputChange}
+                        placeholder="Enter Password"
+                        required     
+                    />
+                    <FormInput
+                        type="password"
+                        name="passwordConfirm"
+                        value={password}
+                        handleChange={this.handleInputChange}
+                        placeholder="Confirm Password"
+                        required     
+                    />
+                    <ActionButton 
+                        type="submit"
+                    >
+                        Register
+                    </ActionButton>
+                </form>
             </div>
         )
     }

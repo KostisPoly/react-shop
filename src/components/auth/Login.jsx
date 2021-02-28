@@ -3,6 +3,7 @@ import './login.scss'
 import FormInput from './form-input'
 import ActionButton from '../action-button/action-button'
 
+import { signInWithGoogle } from '../../firebase/firebase'
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -54,6 +55,9 @@ class Login extends Component {
 
                     <ActionButton name="submit" type="submit">
                         Login
+                    </ActionButton>
+                    <ActionButton googleBtn onClick={signInWithGoogle}>
+                        Signin with Google
                     </ActionButton>
                 </form>
             </div>
