@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import './header.scss'
 import { AiOutlineHome } from 'react-icons/ai'
 import { auth } from '../../firebase/firebase'
+import { connect } from 'react-redux'
+
 const Header = ({ currentUser }) => {
 
     return (
@@ -31,4 +33,8 @@ const Header = ({ currentUser }) => {
     )
 }
 
-export default Header;
+const mapSateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(mapSateToProps)(Header);
