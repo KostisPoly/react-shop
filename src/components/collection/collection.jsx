@@ -3,7 +3,7 @@ import './collection.scss'
 import CollectionItem from './collection-item'
 
 const Collection = ({ title, items }) => {
-    console.log(items);
+
     return (
         <div className="collection-preview">
             <h1 className="title">{title}</h1>

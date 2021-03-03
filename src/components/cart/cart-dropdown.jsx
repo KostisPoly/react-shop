@@ -5,10 +5,12 @@ import CartItem from './cart-item'
 import {connect} from 'react-redux'
 
 const CartDropdown = ({cartItems}) =>  {
+    
     return (
         <div className="cart-dropdown">
             <div className="cart-items">
                 {
+                    
                     cartItems.map(cartItem => (
                         <CartItem key={cartItem.id} item={cartItem} />
                     ))
@@ -21,8 +23,8 @@ const CartDropdown = ({cartItems}) =>  {
     )
 }
 
-const mapStateToProps =  ({cart}) => ({
-    cartItems: cart.cartItems
+const mapStateToProps =  ({cart: {cartItems} }) => ({
+    cartItems
 })
 
 

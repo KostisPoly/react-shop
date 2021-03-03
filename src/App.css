@@ -18,7 +18,7 @@ a {
 /* TO REMOVE SCROLLABLE */
 html {
     overflow: scroll;
-    overflow-y: hidden;
+    overflow-x: hidden;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }

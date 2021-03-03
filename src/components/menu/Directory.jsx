@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import './directory.scss'
 import MenuItem from './menu-item'
-// import * as images from '../../../public/assets'
-// console.log(images);
+
 export default class Directory extends Component {
     constructor(props){
         super(props);
