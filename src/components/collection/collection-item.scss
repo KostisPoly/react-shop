@@ -11,6 +11,9 @@ align-items: center;
         background-size: cover;
         background-position: center;
         margin-bottom: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
 
     .collection-footer {
@@ -27,6 +30,30 @@ align-items: center;
 
         .price {
         width: 10%;
+        }
+    }
+
+    .custom-button {
+        background-color: transparent;
+        display: none;
+    }
+
+    &:hover {
+
+        .image {
+            // opacity: 0.65;
+            filter: brightness(65%);
+        }
+
+        .custom-button {
+            display: flex;
+            color: lime;
+            background-color: transparent;
+            border: none;
+            font-weight: bolder;
+            // opacity: 1;
+            font-size: larger;
+            filter: brightness(135%);
         }
     }
 }
