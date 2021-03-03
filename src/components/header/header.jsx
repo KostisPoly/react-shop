@@ -4,6 +4,8 @@ import './header.scss'
 import { AiOutlineHome } from 'react-icons/ai'
 import { auth } from '../../firebase/firebase'
 import { connect } from 'react-redux'
+import CartIcon from '../cart/cart-icon'
+import CartDropdown from '../cart/cart-dropdown'
 
 const Header = ({ currentUser }) => {
 
@@ -27,8 +29,9 @@ const Header = ({ currentUser }) => {
                     SIGN IN
                     </Link>
                 }
-                
+                <CartIcon />
             </div>
+            <CartDropdown />
         </div>
     )
 }
