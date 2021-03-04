@@ -3,8 +3,9 @@ import ActionButton from '../action-button/action-button'
 import './cart-dropdown.scss'
 import CartItem from './cart-item'
 import {connect} from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
-const CartDropdown = ({cartItems}) =>  {
+const CartDropdown = ({cartItems, history}) =>  {
     
     return (
         <div className="cart-dropdown">
@@ -18,7 +19,7 @@ const CartDropdown = ({cartItems}) =>  {
                 }
                 
             </div>
-            <ActionButton>BUY</ActionButton>
+            <ActionButton onClick={() => history.push('/checkout')}>BUY</ActionButton>
         </div>
     )
 }
@@ -28,4 +29,4 @@ const mapStateToProps =  ({cart: {cartItems} }) => ({
 })
 
 
-export default connect(mapStateToProps)(CartDropdown);
+export default withRouter(connect(mapStateToProps)(CartDropdown));

@@ -19,3 +19,11 @@ export const selectCartItemsCount = createSelector(
     )//Using reduce to return overall quantity always start at
     
 )
+
+export const selectCartTotal = createSelector(
+    [selectCartItems],
+    cartItems => cartItems.reduce(
+        (accumulatedQuantity, cartItem) =>
+            accumulatedQuantity + cartItem.quantity * cartItem.price, 0
+    )
+)
