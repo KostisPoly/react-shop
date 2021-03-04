@@ -21,3 +21,33 @@ export const removeFromCart = (cartItems, itemToRemove) => {
         cartItem.id !== itemToRemove.id
     );
 }
+
+export const changeQuantity = (cartItems, itemToChange) => {
+    
+    const existingCartItem = cartItems.find(//Returns item found on filter func or undefined
+        cartItem => cartItem.id === itemToChange.id
+    );
+    
+    if (existingCartItem.quantity === 1 && itemToChange.type === 'decrease'){
+        return cartItems.filter( cartItem =>
+            cartItem.id !== itemToChange.id
+        );
+    }
+
+    // return cartItems.map(
+    //     cartItem => cartItem.id === itemToChange.id && itemToChange.type === 'decrease'
+    //     ? { ...cartItem, quantity: cartItem.quantity - 1 }
+    //     : { ...cartItem, quantity: cartItem.quantity + 1 } 
+    // );
+    
+    return cartItems.map((cartItem) => {
+        if(cartItem.id === itemToChange.id && itemToChange.type === 'decrease'){
+            return { ...cartItem, quantity: cartItem.quantity - 1 }
+        }else if (cartItem.id === itemToChange.id && itemToChange.type === 'increase') {
+            return { ...cartItem, quantity: cartItem.quantity + 1 }
+        } else {
+                return cartItem;
+        }
+        
+    });
+}
