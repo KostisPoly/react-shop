@@ -15,3 +15,9 @@ export const addToCart = (cartItems, itemToAdd) => {
     //If not return items plus item with prop quantity set to 1
     return [...cartItems, {...itemToAdd, quantity: 1}]
 }
+
+export const removeFromCart = (cartItems, itemToRemove) => {
+    return cartItems.filter( cartItem => 
+        cartItem.id !== itemToRemove.id
+    );
+}
