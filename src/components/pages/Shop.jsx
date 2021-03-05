@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import dumpData from './dumpData';
-import Collection from '../collection/collection'
+import CollectionPreview from '../collection/collectionPreview'
 
 class Shop extends Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class Shop extends Component {
             <div className="shop-page">
                 {
                     collections.map(({ id, title, routeName, items }) => {
-                        return <Collection key={id} title={title} routeName={routeName} items={items}/>
+                        return <CollectionPreview key={id} title={title} routeName={routeName} items={items}/>
                     })
                 }
             </div>

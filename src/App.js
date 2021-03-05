@@ -6,6 +6,7 @@ import Shop from './components/pages/Shop'
 import Header from './components/header/header'
 import Signin from './components/pages/signin'
 import Checkout from './components/pages/checkout'
+import Collection from './components/pages/Collection'
 
 import { connect } from 'react-redux'
 import { setCurrentUser } from './redux/actions/user'
@@ -59,6 +60,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={Homepage} />
           <Route exact path='/shop' component={Shop} />
+          <Route exact path='/shop/:routeName' component={Collection} />
           <Route exact path='/checkout' component={Checkout} />
           <Route exact path='/signin' 
             render={() => this.props.currentUser ? (<Redirect to='/' />) : (<Signin />)} 

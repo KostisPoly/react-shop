@@ -1,12 +1,17 @@
 import React from 'react'
-import './collection.scss'
+import './collection-preview.scss'
 import CollectionItem from './collection-item'
+import { Link } from 'react-router-dom'
 
-const Collection = ({ title, items }) => {
+const CollectionPreview = ({ title, items, routeName }) => {
 
     return (
         <div className="collection-preview">
-            <h1 className="title">{title}</h1>
+            <h1 className="title">
+                <Link to={'/shop/'+routeName}>
+                    {title} &#8618;
+                </Link>
+            </h1>
             <div className="preview">
                 {items.filter((el, index) => index < 4 ).map((item) => {
                     return <CollectionItem key={item.id} item={item}/>
@@ -16,4 +21,4 @@ const Collection = ({ title, items }) => {
     )
 }
 
-export default Collection
+export default CollectionPreview
