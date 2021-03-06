@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import dumpData from './dumpData';
+import { firestore } from '../../firebase/firebase'
 import CollectionItem from '../collection/collection-item'
 import './collection.scss'
 
@@ -9,28 +9,34 @@ class Collection extends Component {
         super(props);
 
         this.state = {
-            collections: dumpData
+            routeName: props.match.params.routeName,
+            collection: []
         };
     }
     
+    componentDidMount() {
+        const collectionRef = firestore.collection('collections');
+        const query = collectionRef.where('routeName', '==', this.state.routeName);
+        
+        query.get()
+        .then( snapShot => {
+            snapShot.forEach(doc => {
+                const data = doc.data()
+                const items = data.items;
+                this.setState({collection: items})
+            })
+        })
+    }
 
     render() {
-        const { routeName } = this.props.match.params;
-        const { collections } = this.state;
-        let items = {};
-        collections.forEach(collection => {
-            if(collection.routeName === routeName){
-                items = collection.items;
-            }
-        })
         
         return(
             
             <div className="collection-page">
-                <h2 className="title">{routeName}</h2>
+                <h2 className="title">{this.state.routeName}</h2>
                 <div className="items">
                 {
-                    items.map(item =>
+                    this.state.collection.map(item =>
                         {return <CollectionItem key={item.id} item={item}/>}
                     )
                 }

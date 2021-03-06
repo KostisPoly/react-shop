@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import dumpData from './dumpData';
+
+import { firestore } from  '../../firebase/firebase'
 import CollectionPreview from '../collection/collectionPreview'
 
 class Shop extends Component {
@@ -7,8 +8,22 @@ class Shop extends Component {
         super(props);
 
         this.state = {
-            collections: dumpData
+            collections: []
         };
+    }
+    componentDidMount() {
+        const collectionRef = firestore.collection('collections');
+
+        collectionRef.get()
+        .then(snapShot => {
+            snapShot.forEach(doc => {
+                const data = doc.data();
+                Object.assign(data, {id: doc.id})
+                this.setState({
+                    collections: [...this.state.collections, data]
+                })
+            })
+        })
     }
 
     render() {

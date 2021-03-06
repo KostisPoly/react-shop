@@ -42,6 +42,17 @@ export const createUserProfile = async (user, otherData) => {
     return userRef;
 }
 
+//Function used to populate firebase from file dumpData
+// export const addCollectionAndDocuments = async (collectionName, itemsToAdd) => {
+//     const collectionRef = firestore.collection(collectionName);
+//     const batch = firestore.batch();
+//     itemsToAdd.forEach(element => {
+//         const newDocRef = collectionRef.doc();
+//         batch.set(newDocRef,element);
+//     });
+//     return await batch.commit()
+// }
+
 export const firestore = firebase.firestore();
 export const auth = firebase.auth();
 

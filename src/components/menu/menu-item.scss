@@ -27,6 +27,7 @@
     
         & .content {
         opacity: 0.9;
+        color: #4a4a4a;
         }
     }
     
@@ -39,12 +40,12 @@
 
     .content {
         height: 90px;
+        max-width: 30%;
         padding: 0 25px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        border: 1px solid black;
         opacity: 0.7;
         position: absolute;
 
@@ -52,7 +53,8 @@
         font-weight: bold;
         margin-bottom: 6px;
         font-size: 22px;
-        color: #4a4a4a;
+        color: white;
+        text-align: center;
         }
 
         .subtitle {
