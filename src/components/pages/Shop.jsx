@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-import { firestore } from  '../../firebase/firebase'
+import { connect } from 'react-redux'
+import { fetchFirestoreAsync } from '../../redux/actions/shop'
 import CollectionPreview from '../collection/collectionPreview'
 
 class Shop extends Component {
@@ -8,31 +8,23 @@ class Shop extends Component {
         super(props);
 
         this.state = {
-            collections: []
+            collections: [],
+            isFetching: false
         };
     }
-    componentDidMount() {
-        const collectionRef = firestore.collection('collections');
 
-        collectionRef.get()
-        .then(snapShot => {
-            snapShot.forEach(doc => {
-                const data = doc.data();
-                Object.assign(data, {id: doc.id})
-                this.setState({
-                    collections: [...this.state.collections, data]
-                })
-            })
-        })
+    componentDidMount() {
+        const  { fetchFirestoreAsync } = this.props;
+        fetchFirestoreAsync('shop');
     }
 
     render() {
-        const { collections } = this.state;
+        const { collections, isFetching } = this.props;
 
         return (
             <div className="shop-page">
                 {
-                    collections.map(({ id, title, routeName, items }) => {
+                    isFetching ? 'LOADING......' : collections.map(({ id, title, routeName, items }) => {
                         return <CollectionPreview key={id} title={title} routeName={routeName} items={items}/>
                     })
                 }
@@ -41,4 +33,14 @@ class Shop extends Component {
     }
 }
 
-export default Shop;
+const mapStateToProps = state => ({
+    collections: state.shop.collections,
+    isFetching: state.shop.isFetching
+})
+
+const mapDispatchToProps = dispatch => ({
+    fetchFirestoreAsync: (pagename) => dispatch(fetchFirestoreAsync(pagename))
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);

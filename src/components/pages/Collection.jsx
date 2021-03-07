@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { firestore } from '../../firebase/firebase'
+import { connect } from 'react-redux'
+import { fetchFirestoreAsync } from '../../redux/actions/shop'
 import CollectionItem from '../collection/collection-item'
 import './collection.scss'
 
@@ -10,33 +11,26 @@ class Collection extends Component {
 
         this.state = {
             routeName: props.match.params.routeName,
-            collection: []
+            collection: [],
+            isFetching: false
         };
     }
     
     componentDidMount() {
-        const collectionRef = firestore.collection('collections');
-        const query = collectionRef.where('routeName', '==', this.state.routeName);
-        
-        query.get()
-        .then( snapShot => {
-            snapShot.forEach(doc => {
-                const data = doc.data()
-                const items = data.items;
-                this.setState({collection: items})
-            })
-        })
+        const  { fetchFirestoreAsync } = this.props;
+        fetchFirestoreAsync(this.state.routeName);
     }
 
     render() {
-        
+        const { collection, isFetching } = this.props;
+
         return(
             
             <div className="collection-page">
                 <h2 className="title">{this.state.routeName}</h2>
                 <div className="items">
                 {
-                    this.state.collection.map(item =>
+                    isFetching ? 'LOADING......' : collection.map(item =>
                         {return <CollectionItem key={item.id} item={item}/>}
                     )
                 }
@@ -49,4 +43,14 @@ class Collection extends Component {
     }
 }
 
-export default Collection;
+const mapStateToProps = state => ({
+    collection: state.shop.collection,
+    isFetching: state.shop.isFetching
+})
+
+const mapDispatchToProps = dispatch => ({
+    fetchFirestoreAsync: (pagename) => dispatch(fetchFirestoreAsync(pagename))
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Collection);
