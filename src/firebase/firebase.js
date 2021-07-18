@@ -1,16 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
-
-const config = {
-    apiKey: "AIzaSyAHtGLVwXuwoLsqBpuS-RkNaI6A1JFog8s",
-    authDomain: "react-shop-2021.firebaseapp.com",
-    projectId: "react-shop-2021",
-    storageBucket: "react-shop-2021.appspot.com",
-    messagingSenderId: "301454677341",
-    appId: "1:301454677341:web:56ab3cdec1f932476b04b4",
-    measurementId: "G-ED3SJJHY6Q"
-}
+import config from './config.json'
 
 firebase.initializeApp(config);
 
@@ -41,17 +32,6 @@ export const createUserProfile = async (user, otherData) => {
 
     return userRef;
 }
-
-//Function used to populate firebase from file dumpData
-// export const addCollectionAndDocuments = async (collectionName, itemsToAdd) => {
-//     const collectionRef = firestore.collection(collectionName);
-//     const batch = firestore.batch();
-//     itemsToAdd.forEach(element => {
-//         const newDocRef = collectionRef.doc();
-//         batch.set(newDocRef,element);
-//     });
-//     return await batch.commit()
-// }
 
 export const firestore = firebase.firestore();
 export const auth = firebase.auth();
