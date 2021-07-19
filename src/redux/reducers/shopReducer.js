@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     collections: [],
+    collection: [],
     isFetching: false,
     error: undefined
 };
