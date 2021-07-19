@@ -4,6 +4,7 @@ import './App.css';
 import Homepage from './components/pages/homepage'
 import Shop from './components/pages/Shop'
 import Header from './components/header/header'
+import Footer from './components/footer/footer'
 import Signin from './components/pages/signin'
 import Checkout from './components/pages/checkout'
 import Collection from './components/pages/Collection'
@@ -67,6 +68,7 @@ class App extends React.Component {
 
             />
         </Switch>
+        <Footer />
       </div>
     );
   }
